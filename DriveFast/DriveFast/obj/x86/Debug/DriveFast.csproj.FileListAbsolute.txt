@@ -1,0 +1,25 @@
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Background.xnb
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Car.xnb
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Hazard.xnb
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Road.xnb
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\MyFont.xnb
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\DriveFast.exe
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\DriveFast.pdb
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\obj\x86\Debug\DriveFast.csprojResolveAssemblyReference.cache
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\obj\x86\Debug\DriveFast.exe
+E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\obj\x86\Debug\DriveFast.pdb
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Background.xnb
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Car.xnb
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Hazard.xnb
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Road.xnb
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\MyFont.xnb
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\DriveFast.exe
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\DriveFast.pdb
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\obj\x86\Debug\DriveFast.csprojResolveAssemblyReference.cache
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\obj\x86\Debug\DriveFast.exe
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\obj\x86\Debug\DriveFast.pdb
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Music\backgroundMusic.xnb
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Music\backgroundMusic.wma
+C:\Users\rccoder\Documents\Visual Studio 2013\Projects\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Banana.xnb
