@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 namespace DriveFast
 {
-   
+
     class Banana
     {
         public Vector2 Position;

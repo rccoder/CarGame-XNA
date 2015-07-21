@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banana.cs" />
+    <Compile Include="Durian.cs" />
     <Compile Include="Hazard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />

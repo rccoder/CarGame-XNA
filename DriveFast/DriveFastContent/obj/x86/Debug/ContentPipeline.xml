@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Background.xnb</Output>
+      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Background.xnb</Output>
       <Time>2011-02-20T16:01:48+08:00</Time>
     </Item>
     <Item>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Car.xnb</Output>
-      <Time>2011-02-20T16:01:48+08:00</Time>
+      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Car.xnb</Output>
+      <Time>2015-07-18T20:19:16+08:00</Time>
     </Item>
     <Item>
       <Source>Images\Hazard.PNG</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Hazard.xnb</Output>
-      <Time>2011-02-20T16:01:48+08:00</Time>
+      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Hazard.xnb</Output>
+      <Time>2015-07-18T20:09:46+08:00</Time>
     </Item>
     <Item>
       <Source>Images\Road.PNG</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Road.xnb</Output>
-      <Time>2011-02-20T16:01:48+08:00</Time>
+      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Road.xnb</Output>
+      <Time>2015-07-18T21:00:02+08:00</Time>
     </Item>
     <Item>
       <Source>MyFont.spritefont</Source>
@@ -43,8 +43,36 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\MyFont.xnb</Output>
+      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\MyFont.xnb</Output>
       <Time>2011-02-20T16:01:54+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Car2.png</Source>
+      <Name>Images\Car2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Car2.xnb</Output>
+      <Time>2015-07-18T21:20:34+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\Ba.png</Source>
+      <Name>Images\Ba</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Ba.xnb</Output>
+      <Time>2015-07-20T22:19:38.3112809+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\backgroundMusic.mp3</Source>
+      <Name>Music\backgroundMusic</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Music\backgroundMusic.xnb</Output>
+      <Extra>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Music\backgroundMusic.wma</Extra>
+      <Time>2015-07-17T09:50:30.0167135+08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -52,39 +80,39 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFastContent\</RootDirectory>
-      <LoggerRootDirectory>E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\</LoggerRootDirectory>
-      <IntermediateDirectory>E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFastContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFastContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFastContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
-        <Value>2010-08-23T19:41:18+08:00</Value>
+        <Value>2010-08-23T12:41:18+08:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
-        <Value>2010-08-23T19:41:18+08:00</Value>
+        <Value>2010-08-23T12:41:18+08:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
-        <Value>2010-08-23T19:41:18+08:00</Value>
+        <Value>2010-08-23T12:41:18+08:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
-        <Value>2010-08-23T19:41:18+08:00</Value>
+        <Value>2010-08-23T12:41:18+08:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
-        <Value>2010-08-23T19:41:18+08:00</Value>
+        <Value>2010-08-23T12:41:18+08:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
-        <Value>2010-08-23T19:41:18+08:00</Value>
+        <Value>2010-08-23T12:41:18+08:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2014-06-02T05:27:32.1538302+08:00</Value>
+        <Value>2015-07-14T23:20:07.8123089+08:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>

@@ -71,6 +71,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Images\Car2.png">
+      <Name>Car2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Music\backgroundMusic.mp3">
       <Name>backgroundMusic</Name>
       <Importer>Mp3Importer</Importer>
@@ -78,8 +85,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Images\Banana.jpg">
-      <Name>Banana</Name>
+    <Compile Include="Images\Ba.png">
+      <Name>Ba</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Images\Durian.png">
+      <Name>Durian</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
