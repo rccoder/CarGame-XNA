@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Background.xnb</Output>
-      <Time>2011-02-20T16:01:48+08:00</Time>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Background.xnb</Output>
+      <Time>2015-07-22T12:56:48+08:00</Time>
     </Item>
     <Item>
       <Source>Images\Car.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Car.xnb</Output>
-      <Time>2015-07-18T20:19:16+08:00</Time>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Car.xnb</Output>
+      <Time>2015-07-22T12:14:04+08:00</Time>
     </Item>
     <Item>
       <Source>Images\Hazard.PNG</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Hazard.xnb</Output>
-      <Time>2015-07-18T20:09:46+08:00</Time>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Hazard.xnb</Output>
+      <Time>2015-07-22T12:03:50+08:00</Time>
     </Item>
     <Item>
       <Source>Images\Road.PNG</Source>
@@ -34,17 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Road.xnb</Output>
-      <Time>2015-07-18T21:00:02+08:00</Time>
-    </Item>
-    <Item>
-      <Source>MyFont.spritefont</Source>
-      <Name>MyFont</Name>
-      <Importer>FontDescriptionImporter</Importer>
-      <Processor>FontDescriptionProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\MyFont.xnb</Output>
-      <Time>2011-02-20T16:01:54+08:00</Time>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Road.xnb</Output>
+      <Time>2015-07-22T13:00:52+08:00</Time>
     </Item>
     <Item>
       <Source>Images\Car2.png</Source>
@@ -52,17 +43,99 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Car2.xnb</Output>
-      <Time>2015-07-18T21:20:34+08:00</Time>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Car2.xnb</Output>
+      <Time>2015-07-23T07:34:58+08:00</Time>
     </Item>
     <Item>
-      <Source>Images\Ba.png</Source>
-      <Name>Images\Ba</Name>
+      <Source>Images\apple.png</Source>
+      <Name>Images\apple</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Images\Ba.xnb</Output>
-      <Time>2015-07-20T22:19:38.3112809+08:00</Time>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Images\apple.xnb</Output>
+      <Time>2015-07-20T22:19:40+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\pineapple.png</Source>
+      <Name>Images\pineapple</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Images\pineapple.xnb</Output>
+      <Time>2015-07-23T12:23:52+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\road2.png</Source>
+      <Name>Images\road2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Images\road2.xnb</Output>
+      <Time>2015-07-24T22:06:54+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\ohno.wav</Source>
+      <Name>Music\ohno</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Music\ohno.xnb</Output>
+      <Time>1992-08-01T06:39:10+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\crash.wav</Source>
+      <Name>Music\crash</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Music\crash.xnb</Output>
+      <Time>2015-07-22T20:42:34+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\cheer.wav</Source>
+      <Name>Music\cheer</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Music\cheer.xnb</Output>
+      <Time>2015-07-22T21:08:56+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\get.wav</Source>
+      <Name>Music\get</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Music\get.xnb</Output>
+      <Time>2015-07-23T12:15:58+08:00</Time>
+    </Item>
+    <Item>
+      <Source>MyFont.spritefont</Source>
+      <Name>MyFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\MyFont.xnb</Output>
+      <Time>2015-07-24T22:57:24+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\gameover.mp3</Source>
+      <Name>Music\gameover</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Music\gameover.xnb</Output>
+      <Time>2015-07-22T20:48:52+08:00</Time>
+    </Item>
+    <Item>
+      <Source>Music\start.mp3</Source>
+      <Name>Music\start</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Music\start.xnb</Output>
+      <Extra>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Music\start.wma</Extra>
+      <Time>2015-07-24T18:19:06+08:00</Time>
     </Item>
     <Item>
       <Source>Music\backgroundMusic.mp3</Source>
@@ -70,9 +143,9 @@
       <Importer>Mp3Importer</Importer>
       <Processor>SongProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Music\backgroundMusic.xnb</Output>
-      <Extra>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\Music\backgroundMusic.wma</Extra>
-      <Time>2015-07-17T09:50:30.0167135+08:00</Time>
+      <Output>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Music\backgroundMusic.xnb</Output>
+      <Extra>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\Music\backgroundMusic.wma</Extra>
+      <Time>2015-07-24T22:25:04+08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -80,10 +153,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFastContent\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFastContent\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFast\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>H:\DriveFast1\DriveFast\DriveFastContent\</RootDirectory>
+      <LoggerRootDirectory>H:\DriveFast1\DriveFast\DriveFast\</LoggerRootDirectory>
+      <IntermediateDirectory>H:\DriveFast1\DriveFast\DriveFastContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>H:\DriveFast1\DriveFast\DriveFast\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>

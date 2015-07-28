@@ -2,3 +2,10 @@ E:\Dropbox\哈工大上课\Labs\DriveFast\DriveFast\DriveFastContent\obj\x86\Deb
 C:\Users\songhaoyu\Desktop\DriveFast\DriveFast\DriveFastContent\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\rccoder\Documents\Visual Studio 2013\Projects\tep\DriveFast\DriveFast\DriveFastContent\obj\x86\Debug\DriveFastContent.contentprojResolveAssemblyReference.cache
 C:\Users\rccoder\Desktop\DriveFast\DriveFast\DriveFastContent\obj\x86\Debug\DriveFastContent.contentprojResolveAssemblyReference.cache
+C:\Users\songhaoyu\Desktop\2015XNA\DriveFast\DriveFast\DriveFastContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\rccoder\Music\DriveFast\DriveFast\DriveFastContent\obj\x86\Debug\DriveFastContent.contentprojResolveAssemblyReference.cache
+C:\Users\songhaoyu\Desktop\DriveFast2\DriveFast\DriveFastContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\songhaoyu\Desktop\DriveFast1\DriveFast\DriveFastContent\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\rccoder\Music\DriveFast1\DriveFast\DriveFastContent\obj\x86\Debug\DriveFastContent.contentprojResolveAssemblyReference.cache
+K:\DriveFast1\DriveFast\DriveFastContent\obj\x86\Debug\DriveFastContent.contentprojResolveAssemblyReference.cache
+H:\DriveFast1\DriveFast\DriveFastContent\obj\x86\Debug\ResolveAssemblyReference.cache

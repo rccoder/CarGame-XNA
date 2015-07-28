@@ -24,44 +24,50 @@ namespace DriveFast
         private Texture2D mCar2;
         private Texture2D mBackground;
         private Texture2D mRoad;
+        private Texture2D mRoad2;
         private Texture2D mHazard;
-        private Texture2D mBanana;
-        private Texture2D mDurian;
+        private Texture2D mApple;
+        private Texture2D mPineapple;
         private Song backgroundMusic;
-        private KeyboardState mPreviousKeyboardState;
+        private SoundEffect ohno;
+        private SoundEffect crash;
+        private SoundEffect gameover;
+        private SoundEffect get;
+        private SoundEffect cheer;
+        private Song start;
 
+        private KeyboardState mPreviousKeyboardState;
         private Vector2 mCarPosition = new Vector2(280, 440);
         private int mMoveCarX = 5;
         private int mVelocityY;
         private double mNextHazardAppearsIn;
-        private double mNextBananaAppearsIn;
-        private double mNextDurianAppearsIn;
+        private double mNextAppleAppearsIn;
+        private double mNextPineappleAppearsIn;
         private int mCarsRemaining;
         private int mHazardsPassed;
-        private int mBananasPassed;
-        private int mDuriansPassed;
+        private int mApplesPassed;
         private int score;
         private int mIncreaseVelocity;
         private double mExitCountDown = 10;
 
         private int[] mRoadY = new int[2];
         private List<Hazard> mHazards = new List<Hazard>();
-        private List<Banana> mBananas = new List<Banana>();
-        private List<Durian> mDurians = new List<Durian>();
+        private List<Apple> mApples = new List<Apple>();
+        private List<pineapple> mPineapples = new List<pineapple>();
 
-        private int carSelect = 1;
-
-        
+        private int CarSelect = 1;
+        private Boolean existApple = false;
+        private Boolean existPineapple = false; 
         // 定义随机数 - 比方用来表示障碍物的位置
         private Random mRandom = new Random();
-
         private SpriteFont mFont;
 
         //----------------------- Feng ---------------------
         // 自定义枚举类型，表明不同的游戏状态
         private enum State
         {
-            TitleScreen,      // 初始片头
+            TitleScreen,     // 初始片头
+            intro,
             Running,
             Crash,           // 碰撞
             GameOver,
@@ -79,7 +85,7 @@ namespace DriveFast
 
             // 定义游戏窗口大小
             graphics.PreferredBackBufferHeight = 600;
-            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferWidth = 760;
         }
 
         /// <summary>
@@ -107,17 +113,22 @@ namespace DriveFast
             mCar2 = Content.Load<Texture2D>("Images/Car2");
             mBackground = Content.Load<Texture2D>("Images/Background");
             mRoad = Content.Load<Texture2D>("Images/Road");
+            mRoad2 = Content.Load<Texture2D>("Images/Road2");
             mHazard = Content.Load<Texture2D>("Images/Hazard");
-            mBanana = Content.Load<Texture2D>("Images/Ba");
-            mDurian = Content.Load<Texture2D>("Images/Durian");
+            mApple = Content.Load<Texture2D>("Images/apple");
+            mPineapple = Content.Load<Texture2D>("Images/pineapple");
             backgroundMusic = Content.Load<Song>("Music/backgroundMusic");
-            MediaPlayer.Volume = 0.3f;
-
+            ohno = Content.Load<SoundEffect>("Music/ohno");
+            crash = Content.Load<SoundEffect>("Music/crash");
+            gameover = Content.Load<SoundEffect>("Music/gameover");
+            get = Content.Load<SoundEffect>("Music/get");
+            cheer = Content.Load<SoundEffect>("Music/cheer");
+            start = Content.Load<Song>("Music/start");
+            MediaPlayer.Volume = 0.4f;
+            MediaPlayer.Play(start);
             // 定义字体
             mFont = Content.Load<SpriteFont>("MyFont");
-
-
-            MediaPlayer.Play(backgroundMusic);
+            //mBigFont = Content.Load<SpriteFont>("MyBigFont");
         }
 
         /// <summary>
@@ -128,26 +139,36 @@ namespace DriveFast
         {
             // TODO: Unload any non ContentManager content here
         }
-
+        protected void introGame()
+        {
+            mCurrentState = State.intro;
+        }
         protected void StartGame()
         {
+            MediaPlayer.Pause();
+            MediaPlayer.Play(backgroundMusic);
             mRoadY[0] = 0;
             mRoadY[1] = -1 * mRoad.Height;
-
             mHazardsPassed = 0;
-            mBananasPassed = 0;
-            mDuriansPassed = 0;
+            mApplesPassed = 0;
             score = 0;
-            mCarsRemaining = 3; // 所剩车辆的数量
-            mVelocityY = 3;
-            mNextHazardAppearsIn = 1.5;
-            mNextBananaAppearsIn = 7;
-            mNextDurianAppearsIn = 4;
+            if (CarSelect == 1)
+            {
+                mCarsRemaining = 3; // 所剩车辆的数量
+                mVelocityY = 6;
+            }
+            else if (CarSelect == 2)
+            {
+                mCarsRemaining = 5;
+                mVelocityY = 4;
+            }
+            mNextHazardAppearsIn = 1;
+            mNextAppleAppearsIn = 3.1;
+            mNextPineappleAppearsIn = 5.2;
             mIncreaseVelocity = 5;  // 速度递增
 
             mHazards.Clear();
-            mBananas.Clear();
-            mDurians.Clear();
+            mApples.Clear();
 
             mCurrentState = State.Running;
         }
@@ -169,18 +190,31 @@ namespace DriveFast
             }
             //减小音量F3
             // TODO
-            if (aCurrentKeyboardState.IsKeyDown(Keys.F3) == true)
+            if (aCurrentKeyboardState.IsKeyDown(Keys.F3) == true && mPreviousKeyboardState.IsKeyDown(Keys.F3) == false)
             {
-                MediaPlayer.Volume -= 0.01f;
+                MediaPlayer.Volume -= 0.05f;
             }
             //增大音量F4
-            if (aCurrentKeyboardState.IsKeyDown(Keys.F4) == true)
+            if (aCurrentKeyboardState.IsKeyDown(Keys.F4) == true && mPreviousKeyboardState.IsKeyDown(Keys.F4) == false)
             {
-                MediaPlayer.Volume += 0.04f;
+                MediaPlayer.Volume += 0.05f;
+            }
+            //介绍页面
+            if (aCurrentKeyboardState.IsKeyDown(Keys.M))
+            {
+                introGame();
             }
             switch (mCurrentState)
             {
                 case State.TitleScreen:
+                    {
+                        if (aCurrentKeyboardState.IsKeyDown(Keys.Space) == true/*&& mPreviousKeyboardState.IsKeyDown(Keys.Space) == false*/)
+                        {
+                            introGame();
+                        }
+                        break;
+                    }
+                case State.intro:
                 case State.Success:
                 case State.GameOver:
                     {
@@ -188,14 +222,16 @@ namespace DriveFast
                         //选择不同的车
                         if (aCurrentKeyboardState.IsKeyDown(Keys.A) == true && mPreviousKeyboardState.IsKeyDown(Keys.A) == false)
                         {   
-                            mMoveCarX = 5;
-                            carSelect = 1;
+                            mMoveCarX = 6;
+                            CarSelect = 1;
+                            mVelocityY = 5;
                             StartGame();
                         }
                         if (aCurrentKeyboardState.IsKeyDown(Keys.S) == true && mPreviousKeyboardState.IsKeyDown(Keys.S) == false)
                         {
-                            mMoveCarX = 1;
-                            carSelect = 2;
+                            mMoveCarX = 3;
+                            CarSelect = 2;
+                            mVelocityY = 4;
                             StartGame();
                         }
                         break;
@@ -203,47 +239,62 @@ namespace DriveFast
 
                 case State.Running:
                     {
-                        //If the user has pressed the Spacebar, then make the car switch lanes
+                        if (CarSelect == 1)
+                            if (mVelocityY > 15) mVelocityY = 15;
+                        if (CarSelect == 2)
+                            if (mVelocityY > 10) mVelocityY = 10;
+                        //If the user has pressed the Spacebar, then make the Car switch lanes
                         if (aCurrentKeyboardState.IsKeyDown(Keys.Left) == true/*&& mPreviousKeyboardState.IsKeyDown(Keys.Space) == false*/)
                         {
                             mCarPosition.X -= mMoveCarX;
-                           // mMoveCarX *= -1;
                         }
                         if (aCurrentKeyboardState.IsKeyDown(Keys.Right) == true/*&& mPreviousKeyboardState.IsKeyDown(Keys.Space) == false*/)
                         {
                             mCarPosition.X += mMoveCarX;
-                            // mMoveCarX *= -1;
+                        }
+                        if (mCarPosition.X >= 600 || mCarPosition.X <= 50)
+                        {
+                            mCurrentState = State.Crash;
+                            mCarsRemaining--;
+                            crash.Play();
+                            if (mCarsRemaining < 0)
+                            {
+                                mCurrentState = State.GameOver;
+                                gameover.Play();
+                                MediaPlayer.Pause();
+                                mExitCountDown = 10;
+                                if (mCarPosition.X <= 50) mCarPosition.X += 5;
+                                if (mCarPosition.X >= 600) mCarPosition.X -= 5;
+                            }
                         }
                         ScrollRoad();
-
                         foreach (Hazard aHazard in mHazards)
                         {
                             if (CheckCollision(aHazard) == true)
                             {
                                 break;
                             }
-
                             MoveHazard(aHazard);
                         }
-                        foreach (Banana aBanana in mBananas)
+                        foreach (Apple aApple in mApples)
                         {
-                            if (CheckCollision(aBanana) == true)
+                            if (CheckAppleCollision(aApple) == 1)
                             {
                                 break;
                             }
-                            MoveBanana(aBanana);
+                            MoveApple(aApple);
                         }
-                        foreach (Durian aDurian in mDurians)
+                        foreach (pineapple apineapple in mPineapples)
                         {
-                            if (CheckCollision(aDurian) == true)
+                            if (CheckPineappleCollision(apineapple) == 1)
                             {
                                 break;
                             }
-                            MoveDurian(aDurian);
+                            MovePineapple(apineapple);
                         }
                         UpdateHazards(gameTime);
-                        UpdateBananas(gameTime);
-                        UpdateDurians(gameTime);
+                        UpdateApples(gameTime);
+                        UpdatePineapples(gameTime);
                         break;
                     }
                 case State.Crash:
@@ -252,8 +303,22 @@ namespace DriveFast
                         if (aCurrentKeyboardState.IsKeyDown(Keys.Space) == true && mPreviousKeyboardState.IsKeyDown(Keys.Space) == false)
                         {
                             mHazards.Clear();
-                            mBananas.Clear();
-                            mDurians.Clear();
+                            mApples.Clear();
+                            existApple = false;
+                            foreach(Apple apple in  mApples)
+                            {
+                                apple.isEated = false;
+                                apple.Visible = true;
+                            }
+                            foreach (pineapple pineapple in mPineapples)
+                            {
+                                pineapple.isEated = false;
+                                pineapple.Visible = true;
+                            }
+                            existApple = false;
+                            existPineapple = false;
+                            if (mCarPosition.X <= 50) mCarPosition.X += 20;
+                            if (mCarPosition.X >= 600) mCarPosition.X -= 20;
                             mCurrentState = State.Running;
                         }
 
@@ -300,9 +365,11 @@ namespace DriveFast
             {
                 theHazard.Visible = false;
                 mHazardsPassed += 1;
-                score += 4;
+                score += 5;
                 if (mHazardsPassed >= 200) // 如果超过200个障碍物，通关游戏
                 {
+                    MediaPlayer.Pause();
+                    cheer.Play();
                     mCurrentState = State.Success;
                     mExitCountDown = 10;
                 }
@@ -316,47 +383,37 @@ namespace DriveFast
             }
         }
 
-        private void MoveBanana(Banana theBanana)
+        private void MoveApple(Apple theApple)
         {
-            theBanana.Position.Y += mVelocityY;
-            if (theBanana.Position.Y > graphics.GraphicsDevice.Viewport.Height && theBanana.Visible == true)
+            theApple.Position.Y += mVelocityY;
+            if (theApple.Position.Y > graphics.GraphicsDevice.Viewport.Height && theApple.Visible == true)
             {
-                theBanana.Visible = false;
-                mBananasPassed += 1;
-                score += 20;
+                theApple.Visible = false;
+                theApple.isEated = true;
+                existApple = false;
                 if (score >= 1000)  //第二种通关的可能就是score超过1000
                 {
+                    MediaPlayer.Pause();
+                    cheer.Play();
                     mCurrentState = State.Success;
                     mExitCountDown = 10;
                 }
-
-                mIncreaseVelocity -= 1;
-                if (mIncreaseVelocity < 0)
-                {
-                    mIncreaseVelocity = 5;
-                    mVelocityY += 1;
-                }
             }
         }
-        private void MoveDurian(Durian theDurian)
+        private void MovePineapple(pineapple thepineapple)
         {
-            theDurian.Position.Y += mVelocityY;
-            if (theDurian.Position.Y > graphics.GraphicsDevice.Viewport.Height && theDurian.Visible == true)
+            thepineapple.Position.Y += mVelocityY;
+            if (thepineapple.Position.Y > graphics.GraphicsDevice.Viewport.Height && thepineapple.Visible == true)
             {
-                theDurian.Visible = false;
-                mDuriansPassed += 1;
-                //score -= 20;
-                if (score <= 0)  //第二种通关的可能就是score超过1000
+                thepineapple.Visible = false;
+                thepineapple.isEated = true;
+                existPineapple = false;
+                if (score >= 1000)
                 {
-                    mCurrentState = State.GameOver;
+                    MediaPlayer.Pause();
+                    cheer.Play();
+                    mCurrentState = State.Success;
                     mExitCountDown = 10;
-                }
-
-                mIncreaseVelocity -= 1;
-                if (mIncreaseVelocity < 0)
-                {
-                    mIncreaseVelocity = 5;
-                    mVelocityY += 1;
                 }
             }
         }
@@ -380,10 +437,10 @@ namespace DriveFast
             }
         }
 
-        private void UpdateBananas(GameTime theGameTime)
+        private void UpdateApples(GameTime theGameTime)
         {
-            mNextBananaAppearsIn -= theGameTime.ElapsedGameTime.TotalSeconds; // 游戏运行的时间
-            if (mNextBananaAppearsIn < 0)
+            mNextAppleAppearsIn -= theGameTime.ElapsedGameTime.TotalSeconds; // 游戏运行的时间
+            if (mNextAppleAppearsIn < 0)
             {
                 int aLowerBound = 24 - (mVelocityY * 2);
                 int aUpperBound = 30 - (mVelocityY * 2);
@@ -395,15 +452,18 @@ namespace DriveFast
                 }
 
                 // 控制障碍物出现的位置（随机）
-                mNextBananaAppearsIn = (double)mRandom.Next(aLowerBound, aUpperBound) / 10;
-                AddBanana();
+                if (!existApple)
+                {
+                    mNextAppleAppearsIn = (double)mRandom.Next(aLowerBound, aUpperBound) / 10;
+                    AddApple();
+                    existApple = true;
+                }
             }
         }
-
-        private void UpdateDurians(GameTime theGameTime)
+        private void UpdatePineapples(GameTime theGameTime)
         {
-            mNextDurianAppearsIn -= theGameTime.ElapsedGameTime.TotalSeconds; // 游戏运行的时间
-            if (mNextDurianAppearsIn < 0)
+            mNextPineappleAppearsIn -= theGameTime.ElapsedGameTime.TotalSeconds; // 游®?戏¡¤运?行D的Ì?时º¡À间?
+            if (mNextPineappleAppearsIn < 0)
             {
                 int aLowerBound = 24 - (mVelocityY * 2);
                 int aUpperBound = 30 - (mVelocityY * 2);
@@ -413,22 +473,42 @@ namespace DriveFast
                     aLowerBound = 6;
                     aUpperBound = 8;
                 }
-
-                // 控制障碍物出现的位置（随机）
-                mNextDurianAppearsIn = (double)mRandom.Next(aLowerBound, aUpperBound) / 10;
-                AddDurian();
+                if (!existPineapple)
+                {
+                    mNextPineappleAppearsIn = (double)mRandom.Next(aLowerBound, aUpperBound) / 10;
+                    AddPineapple();
+                    existPineapple = true;
+                }
             }
         }
-
         private void AddHazard()
         {
-            int aRoadPosition = mRandom.Next(1, 3);
-            int aPosition = 275;
+            int aRoadPosition = mRandom.Next(1, 8);
+            int aPosition = 90 + mRandom.Next(-40,40);
             if (aRoadPosition == 2)
             {
-                aPosition = 440;
+                aPosition = 265 + mRandom.Next(-40, 40);
             }
-
+            else if (aRoadPosition == 3 )
+            {
+                aPosition = 455 + mRandom.Next(-40, 40);
+            }
+            else if (aRoadPosition == 4)
+            {
+                aPosition = 610 + mRandom.Next(-40, 40);
+            }
+            else if (aRoadPosition == 5)
+            {
+                aPosition = 180 + mRandom.Next(-20, 20);
+            }
+            else if (aRoadPosition == 6 )
+            {
+                aPosition = 530 + mRandom.Next(-20, 20);
+            }
+            else if (aRoadPosition == 7)
+            {
+                aPosition = 360 + mRandom.Next(-20, 20);
+            }
             bool aAddNewHazard = true;
             foreach (Hazard aHazard in mHazards)
             {
@@ -451,67 +531,94 @@ namespace DriveFast
             }
         }
 
-        private void AddBanana()
+        private void AddApple()
         {
-            int aRoadPosition = mRandom.Next(1, 3);
-            int aPosition = 275;
+            int aRoadPosition = mRandom.Next(1, 8);
+            int aPosition = 85 - mRandom.Next(1, 11); ;
             if (aRoadPosition == 2)
             {
-                aPosition = 440;
+                aPosition = 120+mRandom.Next(1,11);
             }
-
-            bool aAddNewBanana = true;
-            foreach (Banana aBanana in mBananas)
+            else if (aRoadPosition == 3)
             {
-                if (aBanana.Visible == false)
+                aPosition = 240 - mRandom.Next(1, 11);
+            }
+            else if (aRoadPosition == 4)
+            {
+                aPosition = 280 + mRandom.Next(1, 11);
+            }
+            else if (aRoadPosition == 5)
+            {
+                aPosition = 410 - mRandom.Next(1, 11);
+            }
+            else if (aRoadPosition == 6)
+            {
+                aPosition = 450 + mRandom.Next(1, 11);
+            }
+            else if (aRoadPosition == 7)
+            {
+                aPosition = 560 - mRandom.Next(1, 11);
+            }
+            bool aAddNewApple = true;
+            foreach (Apple aApple in mApples)
+            {
+                if (aApple.Visible == false)
                 {
-                    aAddNewBanana = false;
-                    aBanana.Visible = true;
-                    aBanana.Position = new Vector2(aPosition, -mBanana.Height);
+                    aAddNewApple = false;
+                    aApple.Visible = true;
+                    aApple.isEated = false;
+                    aApple.Position = new Vector2(aPosition, -mApple.Height);
                     break;
                 }
             }
-
-            if (aAddNewBanana == true)
+            if (aAddNewApple == true)
             {
-                //Add a Banana to the left side of the Road
-                Banana aBanana = new Banana();
-                aBanana.Position = new Vector2(aPosition, -mBanana.Height);
+                //Add a Apple to the left side of the Road
+                Apple aApple = new Apple();
+                aApple.Position = new Vector2(aPosition, -mApple.Height);
 
-                mBananas.Add(aBanana);
+                mApples.Add(aApple);
             }
         }
-
-        private void AddDurian()
+        private void AddPineapple()
         {
-            int aRoadPosition = mRandom.Next(1, 3);
-            int aPosition = 275;
+            int aRoadPosition = mRandom.Next(1,5);
+            int aPosition = 130;
             if (aRoadPosition == 2)
             {
-                aPosition = 440;
+                aPosition = 180;
             }
-
-            bool aAddNewDurian = true;
-            foreach (Durian aDurian in mDurians)
+            else if (aRoadPosition == 3)
             {
-                if (aDurian.Visible == false)
+                aPosition = 350;
+            }
+            else if (aRoadPosition == 4)
+            {
+                aPosition = 500;
+            }
+            bool aAddNewPineapple = true;
+            foreach (pineapple aPineapple in mPineapples)
+            {
+                if (aPineapple.Visible == false)
                 {
-                    aAddNewDurian = false;
-                    aDurian.Visible = true;
-                    aDurian.Position = new Vector2(aPosition, -mDurian.Height);
+                    aAddNewPineapple = false;
+                    aPineapple.Visible = true;
+                    aPineapple.isEated = false;
+                    aPineapple.Position = new Vector2(aPosition, -mPineapple.Height);
                     break;
                 }
             }
-
-            if (aAddNewDurian == true)
+            if (aAddNewPineapple == true)
             {
-                //Add a Banana to the left side of the Road
-                Durian aDurian = new Durian();
-                aDurian.Position = new Vector2(aPosition, -mDurian.Height);
+                //Add a Pineapple to the left side of the Road
+                pineapple aPineapple = new pineapple();
+                aPineapple.Position = new Vector2(aPosition, -mPineapple.Height);
 
-                mDurians.Add(aDurian);
+                mPineapples.Add(aPineapple);
             }
         }
+
+
 
         //----------------------- Feng ------------------------------------------------
         // 检测车辆是否碰到了障碍物
@@ -523,79 +630,68 @@ namespace DriveFast
 
             if (aHazardBox.Intersects(aCarBox) == true) // 碰上了吗?
             {
+                crash.Play();
                 mCurrentState = State.Crash;
                 mCarsRemaining -= 1;
                 if (mCarsRemaining < 0)
                 {
                     mCurrentState = State.GameOver;
                     mExitCountDown = 10;
+                    gameover.Play();
+                    MediaPlayer.Pause();
                 }
                 return true;
             }
 
             return false;
         }
-
-        private bool CheckCollision(Banana theBanana)
+        private int CheckAppleCollision(Apple theApple)
         {
             // 分别计算并使用封闭（包裹）盒给障碍物和车
-            BoundingBox aBananaBox = new BoundingBox(new Vector3(theBanana.Position.X, theBanana.Position.Y, 0), new Vector3(theBanana.Position.X + (mBanana.Width * .4f), theBanana.Position.Y + ((mBanana.Height - 50) * .4f), 0));
+            BoundingBox aAppleBox = new BoundingBox(new Vector3(theApple.Position.X, theApple.Position.Y, 0), new Vector3(theApple.Position.X + (mApple.Width * .4f), theApple.Position.Y + ((mApple.Height - 50) * .4f), 0));
             BoundingBox aCarBox = new BoundingBox(new Vector3(mCarPosition.X, mCarPosition.Y, 0), new Vector3(mCarPosition.X + (mCar.Width * .2f), mCarPosition.Y + (mCar.Height * .2f), 0));
 
-            if (aBananaBox.Intersects(aCarBox) == true) // 碰上了吗?
+            if (aAppleBox.Intersects(aCarBox) == true && theApple.isEated == false)
             {
-                MoveBanana(theBanana);
-                theBanana.Visible = false;
-                //应该添加一种 状态，来一种比较绚丽的效果
-                //mCurrentState = State.Crash;
-               // score += 10;
-                /*
-                mCarsRemaining -= 1;
-                if (mCarsRemaining < 0)
-                {
-                    mCurrentState = State.GameOver;
-                    mExitCountDown = 10;
-                }
-                 * */
-                return true;
+                get.Play();
+                MoveApple(theApple);
+                theApple.Visible = false;
+                theApple.isEated = true;
+                existApple = false;
+                score += 15;
+                if(CarSelect == 1)if (mVelocityY >= 14) mVelocityY--;
+                if (CarSelect == 2) if (mVelocityY >= 9) mVelocityY--;
+                return 1;
             }
-
-            return false;
+            return 0;
         }
-
-        private bool CheckCollision(Durian theDurian)
+        private int CheckPineappleCollision(pineapple thePineapple)
         {
-            // 分别计算并使用封闭（包裹）盒给障碍物和车
-            BoundingBox aDurianBox = new BoundingBox(new Vector3(theDurian.Position.X, theDurian.Position.Y, 0), new Vector3(theDurian.Position.X + (mBanana.Width * .4f), theDurian.Position.Y + ((mDurian.Height - 50) * .4f), 0));
+            BoundingBox aPineappleBox = new BoundingBox(new Vector3(thePineapple.Position.X, thePineapple.Position.Y, 0), new Vector3(thePineapple.Position.X + (mPineapple.Width * .4f), thePineapple.Position.Y + ((mPineapple.Height - 50) * .4f), 0));
             BoundingBox aCarBox = new BoundingBox(new Vector3(mCarPosition.X, mCarPosition.Y, 0), new Vector3(mCarPosition.X + (mCar.Width * .2f), mCarPosition.Y + (mCar.Height * .2f), 0));
 
-            if (aDurianBox.Intersects(aCarBox) == true) // 碰上了吗?
+            if (aPineappleBox.Intersects(aCarBox) == true && thePineapple.isEated == false)
             {
-                MoveDurian(theDurian);
-                theDurian.Visible = false;
-                //应该添加一种 状态，来一种比较绚丽的效果
-                //mCurrentState = State.Crash;
-                // score += 10;
-                /*
-                mCarsRemaining -= 1;
-                if (mCarsRemaining < 0)
-                {
-                    mCurrentState = State.GameOver;
-                    mExitCountDown = 10;
-                }
-                 * */
-                return true;
+                ohno.Play();
+                MovePineapple(thePineapple);
+                thePineapple.Visible = false;
+                thePineapple.isEated = true;
+                existPineapple = false;
+                score -= 10;
+                mVelocityY++;
+                return 1;
             }
-
-            return false;
+            return 0;
         }
+
+
 
         //----------------------- Tian ------------------------------------------------------
 
         private void ExitCountdown(GameTime theGameTime)
         {
             mExitCountDown -= theGameTime.ElapsedGameTime.TotalSeconds;
-            if (mExitCountDown < 0)
+            if (mExitCountDown < 0 && mCurrentState != State.intro)
             {
                 this.Exit();
             }
@@ -618,65 +714,85 @@ namespace DriveFast
                 case State.TitleScreen:
                     {
                         //Draw the display text for the Title screen
-                        DrawTextCentered("Drive Fast And Avoid the Oncoming Obstacles", 200);
+                        DrawTextCentered("Welcome To DriveFast Game!", 200);
                         DrawTextCentered("Press 'Space' to begin", 260);
                         DrawTextCentered("Exit in " + ((int)mExitCountDown).ToString(), 475);
-
+                        ExitCountdown(gameTime);
                         break;
                     }
-
+                case State.intro:
+                    {
+                        DrawTextCentered("Hi, Here are some introductions about this game:      ", 50);
+                        DrawTextCentered("Goals: get 1000 scores or pass 200 Hazards            ", 100);
+                        DrawTextCentered("===================================================", 130);
+                        DrawTextCentered("Press A or S to choose different Car                   ", 160);
+                        DrawTextCentered("Press <- and -> to control Car to avoid hazards        ", 190);
+                        DrawTextCentered("Press M to enter the introduction page                 ", 220);
+                        DrawTextCentered("Use F3 and F4 to control volume                        ", 250);
+                        DrawTextCentered("===================================================", 280);
+                        DrawTextCentered("                  About the Cars                   ", 310);
+                        DrawTextCentered("If you press A, the car is easier to control,with 3     ", 340);
+                        DrawTextCentered("cars, but at a higher top speed;                        ", 370);
+                        DrawTextCentered("If you press S, the car is less flexiable,but it is     ", 400);
+                        DrawTextCentered("with 5 cars, and at a lower top speed.                  ", 430);
+                        DrawTextCentered("===================================================", 460);
+                        DrawTextCentered("                   ATTENTION                       ", 490);
+                        DrawTextCentered("Each apple will GIVE you 10 scores,While each pineapple ", 520);
+                        DrawTextCentered("will DECREASE 10 scores and increase the SPEED.         ", 550);
+                        break;
+                    }
                 default:
                     {
                         DrawRoad();
                         DrawHazards();
-                        DrawBananas();
-                        DrawDurians();
-
-                        if (carSelect == 1)
+                        DrawApples();
+                        DrawPineapples();
+                        if (CarSelect == 1)
                         {
                             spriteBatch.Draw(mCar, mCarPosition, new Rectangle(0, 0, mCar.Width, mCar.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 0);
-                            spriteBatch.DrawString(mFont, "Cars:", new Vector2(28, 520), Color.Brown, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+                            spriteBatch.DrawString(mFont, "Cars:", new Vector2(28, 520), Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
                             for (int aCounter = 0; aCounter < mCarsRemaining; aCounter++)
                             {
                                 spriteBatch.Draw(mCar, new Vector2(25 + (30 * aCounter), 550), new Rectangle(0, 0, mCar.Width, mCar.Height), Color.White, 0, new Vector2(0, 0), 0.05f, SpriteEffects.None, 0);
                             }
                         }
-                        else if (carSelect == 2)
+                        else if (CarSelect == 2)
                         {
                             spriteBatch.Draw(mCar2, mCarPosition, new Rectangle(0, 0, mCar.Width, mCar.Height), Color.White, 0, new Vector2(0, 0), 0.2f, SpriteEffects.None, 0);
-                            spriteBatch.DrawString(mFont, "Cars:", new Vector2(28, 520), Color.Brown, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+                            spriteBatch.DrawString(mFont, "Cars:", new Vector2(28, 520), Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
                             for (int aCounter = 0; aCounter < mCarsRemaining; aCounter++)
                             {
                                 spriteBatch.Draw(mCar2, new Vector2(25 + (30 * aCounter), 550), new Rectangle(0, 0, mCar.Width, mCar.Height), Color.White, 0, new Vector2(0, 0), 0.05f, SpriteEffects.None, 0);
                             }
                         }
 
-                        spriteBatch.DrawString(mFont, "Hazards: " + mHazardsPassed.ToString(), new Vector2(5, 25), Color.Brown, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
-                        spriteBatch.DrawString(mFont, "Bananas: " + mBananasPassed.ToString(), new Vector2(5, 50), Color.Brown, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
-                        spriteBatch.DrawString(mFont, "Durians: " + mDuriansPassed.ToString(), new Vector2(5, 75), Color.Brown, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
-                        spriteBatch.DrawString(mFont, "Score: " + score.ToString(), new Vector2(5, 100), Color.Brown, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+                        spriteBatch.DrawString(mFont, "Hazards: " + mHazardsPassed.ToString(), new Vector2(5, 25), Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+
+                        spriteBatch.DrawString(mFont, "Apples: " + mApplesPassed.ToString(), new Vector2(5, 50), Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+
+                        spriteBatch.DrawString(mFont, "Speed: " + mVelocityY, new Vector2(5, 75), Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+
+                        spriteBatch.DrawString(mFont, "Score: " + score.ToString(), new Vector2(5, 100), Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
 
                         if (mCurrentState == State.Crash)
                         {
                             DrawTextDisplayArea();
-
                             DrawTextCentered("Crash!", 200);
                             DrawTextCentered("Press 'Space' to continue driving.", 260);
                         }
                         else if (mCurrentState == State.GameOver)
                         {
                             DrawTextDisplayArea();
-
-                            DrawTextCentered("Game Over.", 200);
-                            DrawTextCentered("Press 'Space' to try again.", 260);
+                            DrawTextCentered("Game Over!", 200);
+                            DrawTextCentered("Try again? Press 'A' for Car or 'S' for Truck.", 260);
                             DrawTextCentered("Exit in " + ((int)mExitCountDown).ToString(), 400);
-
+                            existApple = false;
                         }
                         else if (mCurrentState == State.Success)
                         {
                             DrawTextDisplayArea();
                             DrawTextCentered("Congratulations!", 200);
-                            DrawTextCentered("Press 'Space' to play again.", 260);
+                            DrawTextCentered("play again? Press 'A' for Car or 'S' for Truck.", 260);
                             DrawTextCentered("Exit in " + ((int)mExitCountDown).ToString(), 400);
                         }
 
@@ -694,7 +810,8 @@ namespace DriveFast
             {
                 if (mRoadY[aIndex] > mRoad.Height * -1 && mRoadY[aIndex] <= this.Window.ClientBounds.Height)
                 {
-                    spriteBatch.Draw(mRoad, new Rectangle((int)((this.Window.ClientBounds.Width - mRoad.Width) / 2 - 18), mRoadY[aIndex], mRoad.Width, mRoad.Height + 5), Color.White);
+                    if(CarSelect == 1)spriteBatch.Draw(mRoad2, new Rectangle((int)((this.Window.ClientBounds.Width - mRoad.Width) / 2 - 18), mRoadY[aIndex], mRoad.Width, mRoad.Height + 5), Color.White);
+                    else spriteBatch.Draw(mRoad, new Rectangle((int)((this.Window.ClientBounds.Width - mRoad.Width) / 2 - 18), mRoadY[aIndex], mRoad.Width, mRoad.Height + 5), Color.White);
                 }
             }
         }
@@ -710,28 +827,26 @@ namespace DriveFast
             }
         }
 
-        private void DrawBananas()
+        private void DrawApples()
         {
-            foreach (Banana aBanana in mBananas)
+            foreach (Apple aApple in mApples)
             {
-                if (aBanana.Visible == true)
+                if (aApple.Visible == true)
                 {
-                    spriteBatch.Draw(mBanana, aBanana.Position, new Rectangle(0, 0, mBanana.Width, mBanana.Height), Color.White, 0, new Vector2(0, 0), 0.4f, SpriteEffects.None, 0);
+                    spriteBatch.Draw(mApple, aApple.Position, new Rectangle(0, 0, mApple.Width, mApple.Height), Color.White, 0, new Vector2(0, 0), 0.4f, SpriteEffects.None, 0);
                 }
             }
         }
-
-        private void DrawDurians()
+        private void DrawPineapples()
         {
-            foreach (Durian aDurian in mDurians)
+            foreach (pineapple aPineapple in mPineapples)
             {
-                if (aDurian.Visible == true)
+                if (aPineapple.Visible == true)
                 {
-                    spriteBatch.Draw(mDurian, aDurian.Position, new Rectangle(0, 0, mDurian.Width, mDurian.Height), Color.White, 0, new Vector2(0, 0), 0.4f, SpriteEffects.None, 0);
+                    spriteBatch.Draw(mPineapple, aPineapple.Position, new Rectangle(0, 0, mPineapple.Width, mPineapple.Height), Color.White, 0, new Vector2(0, 0), 0.4f, SpriteEffects.None, 0);
                 }
             }
         }
-
         private void DrawTextDisplayArea()
         {
             int aPositionX = (int)((graphics.GraphicsDevice.Viewport.Width / 2) - (450 / 2));
@@ -743,8 +858,8 @@ namespace DriveFast
             Vector2 aSize = mFont.MeasureString(theDisplayText);
             int aPositionX = (int)((graphics.GraphicsDevice.Viewport.Width / 2) - (aSize.X / 2));
 
-            spriteBatch.DrawString(mFont, theDisplayText, new Vector2(aPositionX, thePositionY), Color.Beige, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
-            spriteBatch.DrawString(mFont, theDisplayText, new Vector2(aPositionX + 1, thePositionY + 1), Color.Brown, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(mFont, theDisplayText, new Vector2(aPositionX, thePositionY), Color.Green, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(mFont, theDisplayText, new Vector2(aPositionX + 1, thePositionY + 1), Color.White, 0, new Vector2(0, 0), 1.0f, SpriteEffects.None, 0);
         }
     }
 }
